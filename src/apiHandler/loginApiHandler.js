@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { history,loginURL } from '../index'
+import { history } from '../index'
+import { loginURL } from '../GenericService'
 
 
 // CREATE-------------------------------------------

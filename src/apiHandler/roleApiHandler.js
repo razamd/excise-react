@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { history,baseURL } from '../index'
+import { history } from '../index'
+import { baseURL } from '../GenericService'
 import {
     createRoleSuccess,
     createRoleError,
