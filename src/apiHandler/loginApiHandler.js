@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { history } from '../index'
+import { history,loginURL } from '../index'
 
 
 // CREATE-------------------------------------------
@@ -11,7 +11,7 @@ export const loginTo = (login) => {
             password: login.password,
         };
         return (dispatch) => {
-            return axios.post('https://young-fjord-70604.herokuapp.com/api/user/login', data)
+            return axios.post(loginURL+'user/login', data)
                 .then(response => {
                     const data=response.data;
                     if(data.Token){

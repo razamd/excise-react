@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { history } from '../index'
+import { history,baseURL } from '../index'
 import {
     createRoleSuccess,
     createRoleError,
@@ -11,8 +11,6 @@ import {
     fetchRolesError,
     fetchRolesSuccess
 } from '../actions/roleActions'
-
-const url = 'http://192.168.2.43:3000/api/role/view'
 
 // CREATE-------------------------------------------
 
@@ -37,12 +35,12 @@ export const createRole = (role) => {
             displayName: role.display_name,
         };
         return (dispatch) => {
-            return axios.post('http://192.168.2.43:3000/api/role/add', data)
+            return axios.post(baseURL+'role/add', data)
                 .then(response => {
                     const id = response.data.savedRole._id;
                     console.log('response ', response.data);
 
-                    axios.get(`${url}/${id}`)
+                    axios.get(`${baseURL+'role/view'}/${id}`)
                         .then(response => {
                             const data = response.data;
                             const normalizedData = {
@@ -90,10 +88,9 @@ export const editRole = (data) => {
     }
 
     return (dispatch) => {
-        const updateUrl = 'http://192.168.2.43:3000/api/role/update'
-        return axios.patch(`${updateUrl}/${id}`, updateData)
+        return axios.patch(`${baseURL+'role/update'}/${id}`, updateData)
             .then(() => {
-                return axios.get(`${url}/${id}`)
+                return axios.get(`${baseURL+'role/view'}/${id}`)
                     .then(response => {
                         dispatch(editRoleSuccess(response.data));
                         history.push('/role')
@@ -124,7 +121,7 @@ export const editRole = (data) => {
 //DELETE-------------------------------------------------------------
 
 export const deleteRole = (id) => {
-    const urlDelete = 'http://192.168.2.43:3000/api/role/delete'
+    const urlDelete = baseURL+'role/delete'
     return (dispatch) => {
         return axios.delete(`${urlDelete}/${id}`)
             .then(() => {
@@ -151,7 +148,7 @@ export const fetchRoles = () => {
     let isLoading = true;
     return (dispatch) => {
         dispatch(fetchRolesLoading(isLoading));
-        return axios.get('http://192.168.2.43:3000/api/role/getAll')
+        return axios.get(baseURL+'role/getAll')
             .then(response => {
                 dispatch(fetchRolesSuccess(response.data));
                 isLoading = false;
