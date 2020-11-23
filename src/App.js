@@ -1,15 +1,11 @@
 import './App.css';
 import { Component } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-import CreateRole from './containers/CreateRole';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Home from './components/Home';
-import User from './components/User';
+import { BrowserRouter as Router} from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import Login from './containers/Login';
-import Signup from './components/Signup';
-import Roles from './containers/Roles';
-import Logout from './components/Logout';
+
+import RoleRouting from './routing/RoleRouting';
+import UserRouting from './routing/UserRouting';
 
 class App extends Component {
 
@@ -47,36 +43,7 @@ class App extends Component {
               </div>
             </div>
           </nav>
-          <Switch>
-            <Route exact path='/' component={Login} />
-            <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={Signup} />
-            <Route
-              exact path="/home"
-              component={Home}>
-            </Route>
-            <Route
-              exact path="/role"
-              component={Roles}>
-            </Route>
-            <Route
-              exact path="/user"
-              component={User}>
-            </Route>
-            <Route
-              exact path="/logout"
-              component={Logout}>
-            </Route>
-            <Route
-              exact path="/role/create"
-              component={CreateRole}>
-            </Route>
-            <Route
-              exact path="/edit/:id"
-              component={(props) => <CreateRole {...props} />}>
-            </Route>
-          </Switch>
-
+          <RoleRouting></RoleRouting>
         </div>
       </Router>
     );

@@ -19,7 +19,8 @@ const Role = ({ role, onEdit,onDelete }) => {
                     Edit
                </button>
             </td>
-        </tr>
+        </tr>      
+        
     )
 
 }

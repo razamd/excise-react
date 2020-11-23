@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { history } from '../index'
-import { baseURL } from '../GenericService'
+import { URL } from '../GenericService'
 import {
     createRoleSuccess,
     createRoleError,
@@ -48,9 +48,8 @@ export const createRole = (role) => {
             displayName: role.displayName,
         };
         return (dispatch) => {
-            return axios.post('http://localhost:4500/role/create', data)
+            return axios.post(URL+'role/create', data)
                 .then(response => {
-                    alert('hello this is create '+response)
                     console.log('response ',response)
                     const id = response.data._id;
                     console.log('response ', response.data);
@@ -81,9 +80,9 @@ export const editRole = (data) => {
     }
 
     return (dispatch) => {
-        return axios.post('http://localhost:4500/role/update/'+id, updateData)
+        return axios.post(URL+'role/update/'+id, updateData)
             .then(() => {
-                return axios.get('http://localhost:4500/role/view/'+id)
+                return axios.get(URL+'role/view/'+id)
                     .then(response => {
                         dispatch(editRoleSuccess(response.data));
                         history.push('/role')
@@ -95,7 +94,6 @@ export const editRole = (data) => {
                     });
 
             }).catch((error) => {
-                alert('erorrr ',error);
                 console.log('errorr ',error)
             })
     }
@@ -104,15 +102,13 @@ export const editRole = (data) => {
 //DELETE-------------------------------------------------------------
 
 export const deleteRole = (id) => {
-    const urlDelete = baseURL+'role/delete'
     return (dispatch) => {
-        return axios.get('http://localhost:4500/role/delete/'+id)
+        return axios.get(URL+'role/delete/'+id)
             .then(() => {
                 dispatch(deleteRoleSuccess(id));
                 history.push('/role')
 
             }).catch((error) => {
-                alert('eror');
                 console.log('error',error);
 
             })
@@ -126,7 +122,7 @@ export const fetchRoles = () => {
     let isLoading = true;
     return (dispatch) => {
         dispatch(fetchRolesLoading(isLoading));
-        return axios.get('http://localhost:4500/role/getAll')
+        return axios.get(URL+'role/getAll')
             .then(response => {
                 dispatch(fetchRolesSuccess(response.data.body));
                 console.log('roles',response.data);
@@ -134,14 +130,7 @@ export const fetchRoles = () => {
                 dispatch(fetchRolesLoading(isLoading));
 
             }).catch(error => {
-                const errorPayload = {};
-                errorPayload['message'] = error.response.data.message;
-                errorPayload['status'] = error.response.status;
-
-                dispatch(fetchRolesError(errorPayload));
-
-                isLoading = false;
-                dispatch(fetchRolesLoading(isLoading));
+                console.log('eror',error)
 
             })
     };

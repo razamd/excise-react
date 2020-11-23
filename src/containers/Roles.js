@@ -5,10 +5,14 @@ import { fetchRoles } from '../apiHandler/roleApiHandler'
 import { deleteRole } from '../apiHandler/roleApiHandler'
 import { history } from '../index'
 import { Link } from 'react-router-dom';
+import Pagination from "react-js-pagination";
 
 class Roles extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            activePage: 15
+          };
     }
 
     componentWillMount() {
@@ -23,6 +27,12 @@ class Roles extends Component {
             }
         })
 
+    }
+    handlePageChange(pageNumber) {
+        console.log(`active page is ${pageNumber}`);
+        this.setState({
+            activePage:pageNumber
+        });
     }
 
     render() {
@@ -70,6 +80,16 @@ class Roles extends Component {
                         </tbody>
 
                     </table>
+                    <Pagination
+                        prevPageText='Prev'
+                        nextPageText='Next'
+                        firstPageText='First'
+                        lastPageText='Last'
+                        activePage={this.state.activePage}
+                        itemsCountPerPage={2}
+                        totalItemsCount={10}
+                        onChange={this.handlePageChange.bind(this)}
+                    />
 
                 </div>
             )

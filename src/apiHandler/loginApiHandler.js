@@ -6,8 +6,6 @@ import { loginURL } from '../GenericService'
 // CREATE-------------------------------------------
 
 export const loginTo = (login) => {
-  
-        alert('This is Login '+loginURL)
         const data = {
             username: login.email,
             password: login.password,
