@@ -10,8 +10,7 @@ import {
     deleteRoleError,
     fetchRolesLoading,
     fetchRolesError,
-    fetchRolesSuccess,
-    ADD_ROLE_ERROR
+    fetchRolesSuccess
 } from '../actions/roleActions'
 
 const accesToken=localStorage.getItem('token');
