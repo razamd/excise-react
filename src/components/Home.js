@@ -7,6 +7,7 @@ export default class Home extends Component {
             <div>
                 <Link to="/role">Role</Link><br></br>
                 <Link to="/user">User</Link>
+                <Link to="/logout">Logout</Link>
             </div>
         )
     }

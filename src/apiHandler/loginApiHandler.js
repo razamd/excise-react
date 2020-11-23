@@ -7,19 +7,19 @@ import { loginURL } from '../GenericService'
 
 export const loginTo = (login) => {
   
+        alert('This is Login '+loginURL)
         const data = {
-            email: login.email,
+            username: login.email,
             password: login.password,
         };
         return (dispatch) => {
-            return axios.post(loginURL+'user/login', data)
+            return axios.post(loginURL, data)
                 .then(response => {
                     const data=response.data;
-                    if(data.Token){
+                    const token=data.token;
+                    localStorage.setItem('token',token)
+                    if(token){
                         history.push('/home')
-                    }
-                    else{
-                        alert('Invalid Token')
                     }
                 }).catch(error => {
                     console.log('Error',error)

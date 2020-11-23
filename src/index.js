@@ -14,7 +14,7 @@ export const history = createBrowserHistory({ forceRefresh: true });
 
 export const baseURL = 'http://192.168.2.43:3000/api/';
 
-export const loginURL ='https://young-fjord-70604.herokuapp.com/api/';
+export const loginURL ='localhost:4500/authenticate/auth';
 
 ReactDOM.render(
   <Provider store={store}>

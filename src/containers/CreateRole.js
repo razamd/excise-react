@@ -9,7 +9,7 @@ class CreateRole extends Component {
             _id:0,
             name:'',
             description:'',
-            display_name:'',
+            displayName:'',
         }
     }
 
@@ -29,7 +29,7 @@ class CreateRole extends Component {
             _id:0,
             name:'',
             description:'',
-            display_name:'',
+            displayName:'',
 
         });
 
@@ -45,7 +45,7 @@ class CreateRole extends Component {
                 _id:role._id,
                 name:role.name,
                 description:role.description,
-                display_name:role.display_name,
+                displayName:role.displayName,
             })
         }
     }
@@ -53,13 +53,6 @@ class CreateRole extends Component {
     render() {
         return (
             <div className="create-role">
-                {
-                    this.props.error?
-                    <div className="alert alert-danger" role="alert">
-                        {this.props.error.message}
-                        <p>All Fields are required</p>
-                    </div>:''
-                }
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className="form-group">
                         <input
@@ -68,6 +61,7 @@ class CreateRole extends Component {
                             name="name"
                             placeholder="Enter Name"
                             value={this.state.name}
+                            required
                             onChange={this.handleValueChnage.bind(this)}
                         />
                     </div>
@@ -77,6 +71,7 @@ class CreateRole extends Component {
                             className="form-control"
                             name="description"
                             placeholder="Enter Description"
+                            required
                             value={this.state.description}
                             onChange={this.handleValueChnage.bind(this)}
                         />
@@ -85,9 +80,9 @@ class CreateRole extends Component {
                     <input
                             type="text"
                             className="form-control"
-                            name="display_name"
+                            name="displayName"
                             placeholder="Enter Display Name"
-                            value={this.state.display_name}
+                            value={this.state.displayName}
                             onChange={this.handleValueChnage.bind(this)}
                         />
                     </div>

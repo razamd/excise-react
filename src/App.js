@@ -9,8 +9,10 @@ import { Link } from 'react-router-dom'
 import Login from './containers/Login';
 import Signup from './components/Signup';
 import Roles from './containers/Roles';
+import Logout from './components/Logout';
 
 class App extends Component {
+
   constructor(props) {
     super(props);
 
@@ -60,6 +62,10 @@ class App extends Component {
             <Route
               exact path="/user"
               component={User}>
+            </Route>
+            <Route
+              exact path="/logout"
+              component={Logout}>
             </Route>
             <Route
               exact path="/role/create"

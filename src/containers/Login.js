@@ -31,7 +31,7 @@ class Login extends Component {
                     <div className="form-group">
                         <label>Email address</label>
                         <input
-                            type="email"
+                            type="text"
                             className="form-control"
                             placeholder="Enter email"
                             name="email"
