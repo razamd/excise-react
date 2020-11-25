@@ -20,8 +20,7 @@ export default class AuthRouting extends Component {
                     exact path="/logout"
                     component={Logout}>
                 </Route>
-            </Switch>
-
+            </Switch>            
         )
     }
 }

@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-           <Nav></Nav>
+          <Nav></Nav>
           <AuthRouting></AuthRouting>
           <RoleRouting></RoleRouting>
           <UserRouting></UserRouting>

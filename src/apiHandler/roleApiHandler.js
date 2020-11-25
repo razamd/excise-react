@@ -13,16 +13,6 @@ import {
     fetchRolesSuccess
 } from '../actions/roleActions'
 
-const accesToken=localStorage.getItem('token');
-axios.interceptors.request.use(
-    config=>{
-        config.headers.authorization = `Bearer ${accesToken}`;
-        return config;
-    },
-    error =>{
-        return Promise.reject(error);
-    }
-)
 
 // CREATE-------------------------------------------
 
@@ -52,6 +42,7 @@ export const createRole = (role) => {
                     console.log('response ',response)
                     const id = response.data._id;
                     console.log('response ', response.data);
+                    dispatch(createRoleSuccess(response.data));
                     history.push('/role');
                     
                 }).catch(error => {
